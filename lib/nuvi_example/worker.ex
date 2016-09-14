@@ -3,7 +3,7 @@ defmodule NuviExample.Worker do
   @url "http://feed.omgili.com/5Rh5AMTrc4Pv/mainstream/posts/"
 
   def start_link do
-    pid = spawn_link &__MODULE__.get_zips/0
+    pid = spawn_link &__MODULE__.download_zips/0
     { :ok, pid }
   end
 
@@ -15,11 +15,14 @@ defmodule NuviExample.Worker do
   end
 
   def download_zips do
-    Enum.each(get_zips, fn (zip_path) -> fetch_zip(zip_path) end)
+    Enum.each(get_zips, &(fetch_zip(&1)))
   end
 
   def fetch_zip(zip_path) do
-    IO.puts(zip_path)
-    HTTPoison.get!(@url + zip_path)
+    if (String.ends_with?(zip_path, ".zip")) do
+      HTTPoison.get!(@url <> zip_path)
+      |> IO.inspect
+    end
+    System.Halt
   end
 end
