@@ -28,6 +28,6 @@ defmodule NuviExample.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:exredis, ">= 0.2.4"}, {:httpoison, "~> 0.9.0"}]
+    [{:exredis, ">= 0.2.4"}, {:httpoison, "~> 0.9.0"}, {:floki, "~> 0.10.1"}]
   end
 end
