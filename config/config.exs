@@ -7,7 +7,13 @@ use Mix.Config
 # file won't be loaded nor affect the parent project. For this reason,
 # if you want to provide default values for your application for
 # 3rd-party users, it should be done in your "mix.exs" file.
-
+config :exredis,
+  host: "127.0.0.1",
+  port: 6379,
+  password: "",
+  db: 0,
+  reconnect: :no_reconnect,
+  max_queue: :infinity
 # You can configure for your application as:
 #
 #     config :nuvi_example, key: :value
